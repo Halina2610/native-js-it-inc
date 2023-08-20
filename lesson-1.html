@@ -1,0 +1,136 @@
+<script>
+
+    //Примитивные типы данных, имеют одно значение
+    //string - "", '', ``
+    //number - number, Nan, BigInt, Infinity, -Infinity
+    //boolean - true, false
+    //undefined -> undefined
+    // null -> null
+    //Symbol->Symbol
+
+
+    //объкты в JS (сложная структра, множества примитивов входят в обьект, есть встроенные свойства и методы
+    // jbject
+    // array
+    //function
+
+    const num = 3
+    const num2 = num //новая ячейка памяти
+
+
+    const user = { //new Object
+        name: "Bob"
+    }
+
+    const user2 = user //не новый объкт, а ссылка
+
+    const array = [
+        user, // не создается новый объкт
+        {name: "Lusy"}
+    ]
+
+    console.log(array[0] === user)
+
+    //C - create
+    //R - read
+    //U - update
+    //D - delete
+    //крудим списки:)
+
+    //mutab & imutab
+
+    const users = [
+        {
+            id: 1,
+            name: "Bob",
+            isStudent: true,
+        },
+        {
+            id: 2,
+            name: "Alex",
+            isStudent: true,
+        },
+        {
+            id: 3,
+            name: "Ann",
+            isStudent: true,
+        },
+        {
+            id: 4,
+            name: "Donald",
+            isStudent: true,
+        },
+    ]
+
+    const newUser = {
+        id: 5,
+        name: "Dony",
+        isStudent: true,
+    }
+    //мутабельно:
+    //users.push(newUser)
+
+    //имутабельно:
+
+    /*
+        const newUsers = []
+            for (let i = 0; i<users.length; i++){
+                copyUsers.push(users[i])
+        }
+        copyUsers.push(newUsers)
+    */
+    // add user (create)
+    const copyUsers = [...users, newUser] //сделали копию, добавили в новый массив users+newUsers
+
+    //  console.log(users === copyUsers)
+
+
+    //change
+    const copyUsers2 = []
+    for (let i = 0; i < copyUsers.length; i++) {
+        if (copyUsers[i].id !== 5) {
+            copyUsers2.push(copyUsers[i])
+        } else {
+            const copyUser = {...copyUsers[i], name: "Galina"}
+            copyUsers2.push(copyUser)
+        }
+    }
+
+    const superUser = {
+        "id": 1,
+        "name": "Leanne Graham",
+        "username": "Bret",
+        "email": "Sincere@april.biz",
+        "address": {
+            "street": "Kulas Light",
+            "suite": "Apt. 556",
+            "city": "Gwenborough",
+            "zipcode": "92998-3874",
+            "geo": {
+                "lat": "-37.3159",
+                "lng": "81.1496"
+            }
+        },
+        "phone": "1-770-736-8031 x56442",
+        "website": "hildegard.org",
+        "company": {
+            "name": "Romaguera-Crona",
+            "catchPhrase": "Multi-layered client-server neural-net",
+            "bs": "harness real-time e-markets"
+        }
+    }
+
+    const copySuperUser = {...superUser, phone: "1-770-756-934 x66442"} //затираем старый телефон
+    console.log(superUser === copySuperUser) //false
+    console.log(copySuperUser.phone) //1-770-756-934 x66442
+
+    const copySuperUser2 = {...SuperUser, company: {...superUser.company, catchPhrase: "Multi-cultu client blabla bla"}}
+    const copySuperUser3 = {
+        ...SuperUser,
+        'address': {
+            ...superUser.address,
+            "geo": {...superUser.address.geo, "lat": "82.284"}
+        }
+    }
+
+</script>
